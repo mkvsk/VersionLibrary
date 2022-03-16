@@ -13,8 +13,10 @@
 
         public void CheckV(string currentV, string otherV)
         {
-            string[] v1 = currentV.Split(('.'), (char)StringSplitOptions.RemoveEmptyEntries);
-            string[] v2 = otherV.Split(('.'), (char)StringSplitOptions.RemoveEmptyEntries);
+            string[] v1 = currentV.Split('.');
+            string[] v2 = otherV.Split('.');
+
+            bool needToUpdate = false;
 
             foreach (string i in v1)
             {
@@ -29,11 +31,11 @@
 
                         if (tmp1 > tmp2)
                         {
-                            Console.WriteLine("Needn't to update");
+                            needToUpdate = false;
                         }
                         if (tmp1 < tmp2)
                         {
-                            Console.WriteLine("Need to update");
+                            needToUpdate = true;
                         }
                     }
                     else
@@ -41,7 +43,15 @@
                         Console.WriteLine("Input version in right format x.x.x");
                         Console.WriteLine();
                     }
-                    
+
+                    if (needToUpdate)
+                    {
+                        Console.WriteLine("Need to update");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Needn't to update");
+                    }
                 }
             }
         }
